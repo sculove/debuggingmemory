@@ -7,9 +7,13 @@ block content
         a(href="https://developers.google.com/v8/design") https://developers.google.com/v8/design
         | ), your code will execute MUCH faster and will use MUCH LESS memory.
     ol
+        li Take heap snapshot - Snapshot1
         li Create some objects
-        li Take heap snapshot
+        li Take heap snapshot - Snapshot2
         li Compare memory usage
+            ol
+                li Comparison Snapshot1 with Snapshot2
+                li Compare SlowPurchase with FastPurchase
     p
         button(onclick="createObjects()") Create objects
     p
@@ -74,6 +78,6 @@ block content
             slowStart = new Date();
             slowObjects.forEach(calculateTotalSlow);
             slowEnd = new Date();
-            document.getElementById("innerTime").innerHTML = fastEnd - fastStart;
-            document.getElementById("slowTime").innerHTML  = slowEnd - slowStart;
+            document.getElementById("innerTime").innerHTML = "FastPurchase : " + (fastEnd - fastStart);
+            document.getElementById("slowTime").innerHTML  = "SlowPurchase : " + (slowEnd - slowStart);
         }

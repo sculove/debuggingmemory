@@ -33,22 +33,24 @@ function FastPurchase(units, price) {
 }
 
 function createObjects() {
+    console.info("create start");
     var i;
     for (i = 0; i < 300000; i++) {
         fastObjects.push(new FastPurchase(i, 10));
         slowObjects.push(slowPurchase(i, 10));
     }
+    console.info("create end");
 }
 
 
 function calculate() {
     var fastStart, slowStart, fastEnd, slowEnd;
-    fastStart = new Date();
+    fastStart = performance.now();
     fastObjects.forEach(calculateTotalFast);
-    fastEnd = new Date();
-    slowStart = new Date();
+    fastEnd = performance.now();
+    slowStart = performance.now();
     slowObjects.forEach(calculateTotalSlow);
-    slowEnd = new Date();
-    document.getElementById("innerTime").innerHTML = fastEnd - fastStart;
-    document.getElementById("slowTime").innerHTML  = slowEnd - slowStart;
+    slowEnd = performance.now();
+    document.getElementById("innerTime").innerHTML = "FastPurchase : " + (fastEnd - fastStart) + " ms";
+    document.getElementById("slowTime").innerHTML  = "SlowPurchase : " + (slowEnd - slowStart) + " ms";
 }
